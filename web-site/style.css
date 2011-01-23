@@ -40,7 +40,7 @@ canvas#logo {
 canvas#logo:hover {
     cursor:hand;
 }
-[type=range] {
+#size-range {
     width:480px;
 }
 p, small {
@@ -62,4 +62,7 @@ canvas#color-picker {
 }
 canvas#color-picker:hover {
 	cursor:crosshair;
+}
+#lightness-range {
+	width: 900px;
 }

@@ -1,6 +1,6 @@
 function init() {
-    var slider = document.querySelector('[type=range]');
-    var output = document.querySelector('output');
+    var slider = document.querySelector('#size-range');
+    var output = document.querySelector('#size');
     var code = document.querySelector('textarea');
     var canvas = document.querySelector('#logo');
 	var colorPicker = document.querySelector("#color-picker");
@@ -13,6 +13,8 @@ function init() {
     var originalSecondaryColor = secondaryColor = 'hsl(18, 86%, 55%)'; //'#F16529';
     var colorsSwapped = false;
     var respondToMouseMove = true;
+    var originalLightness = lightness = 52;
+    var cachedX = cachedY = undefined;
 
 	var realW   = parseInt(getComputedStyle(colorPicker, null).width, 10),
 	    ratio   = colorPicker.width / realW;
@@ -30,7 +32,7 @@ function init() {
 		  colorCache[x] = [];
 
 		  for (y = 0; y < height; y++){
-		    color = 'hsl(' + x  + ', ' + (100 - y) + '%, 50%)';
+		    color = 'hsl(' + x  + ', ' + (100 - y) + '%, ' + lightness + '%)';
 		    colorCache[x][y] = color;
 		    colorCtx.fillStyle = color;
 		    colorCtx.fillRect(x,y,1,1);
@@ -224,15 +226,21 @@ function init() {
     };
 
 	function grabColor(e){
-	  var x     = e.offsetX || e.layerX,
-	      y     = e.offsetY || e.layerY,
-	      realX = parseInt(x * ratio, 10) % 360,
-	      realY = parseInt(y * ratio, 10) % 360
+		if (e) {
+			var x     = e.offsetX || e.layerX,
+		      y     = e.offsetY || e.layerY,
+		      realX = parseInt(x * ratio, 10) % 360,
+		      realY = parseInt(y * ratio, 10) % 360;
+			cachedX = realX;
+			cachedY = realY;
+		} else {
+			// if user changes lighteness
+			var realX = cachedX,
+			    realY = cachedY;
+		}
 
 	  var c1 = colorCache[realX][realY] || originalPrimaryColor;
 	  var c2 = colorCache[realX+6][realY-9] || originalSecondaryColor;
-	
-	  // change to 52 and 55
 	
 	  primaryColor = (colorsSwapped ? c1 : c2);
 	  secondaryColor = (colorsSwapped ? c2 : c1);
@@ -266,6 +274,14 @@ function init() {
 	document.getElementById('revert').addEventListener('click', function() {
 		primaryColor = originalPrimaryColor;
 		secondaryColor = originalSecondaryColor;
+		doDraw(ctx, size);
+	}, false);
+	
+	document.getElementById('lightness-range').addEventListener('change', function(e) {
+		lightness = e.target.value;
+		fillColorPicker();
+		document.getElementById('lightness').textContent = lightness;
+		grabColor();
 		doDraw(ctx, size);
 	}, false);
     

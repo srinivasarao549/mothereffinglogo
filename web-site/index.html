@@ -10,8 +10,8 @@
 <div id="container"> 
     <section role="main"> 
         <canvas id="logo" width="512" height="512" title="Click to open as PNG.">Please use a browser that supports canvas, such as <a href="http://www.opera.com/browser/">Opera for desktop</a>.</canvas> 
-        <input type="range" min="16" max="512" step="2" value="512" title="Change this value to change the size of the image." role="slider" aria-valuemin="16"  aria-valuemax="512" aria-valuenow="512"> 
-        <output></output> 
+        <input id="size-range" type="range" min="16" max="512" step="2" value="512" title="Change this value to change the size of the image." role="slider" aria-valuemin="16"  aria-valuemax="512" aria-valuenow="512"> 
+        <output id="size"></output> 
     </section> 
     <section role="contentinfo"> 
         <h1>HTML5 logo in HTML5</h1> 
@@ -22,6 +22,8 @@
     </section> 
     <section>
 		<canvas width="360" height="100" id="color-picker"></canvas>
+		<input id="lightness-range" type="range" min="1" max="100" step="1" value="52" title="Change this value to change the lightness">
+		<output id="lightness">52</output>
 		<button id="swap">Swap Colors</button>
 		<button id="revert">Revert to Original Colors</button>
 	</section>
