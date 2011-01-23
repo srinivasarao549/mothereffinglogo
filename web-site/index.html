@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style.css"> 
+<script src="script.js"></script> 
+<title>HTML5 logo created in HTML5 using &lt;canvas&gt;</title> 
+</head> 
+<body role="application"> 
+<div id="container"> 
+    <section role="main"> 
+        <canvas id="logo" width="512" height="512" title="Click to open as PNG.">Please use a browser that supports canvas, such as <a href="http://www.opera.com/browser/">Opera for desktop</a>.</canvas> 
+        <input type="range" min="16" max="512" step="2" value="512" title="Change this value to change the size of the image." role="slider" aria-valuemin="16"  aria-valuemax="512" aria-valuenow="512"> 
+        <output></output> 
+    </section> 
+    <section role="contentinfo"> 
+        <h1>HTML5 logo in HTML5</h1> 
+        <p>An <a href="http://www.w3.org/html/logo/">HTML5 logo</a> generator made with <a href="http://dev.opera.com/articles/view/html-5-canvas-the-basics/"><code>&lt;canvas&gt;</code></a> by taking the paths in the <a href="http://www.w3.org/html/logo/downloads/HTML5_Badge.svg">SVG logo</a> and rewriting them as <code>moveTo()/lineTo()</code>. You can click on the image to open as PNG (thanks <a href="http://annevankesteren.nl/">Anne</a>).</p> 
+        <p>If you don't see a slider below the logo, please try using another browser such as <a href="http://www.opera.com/browser/">Opera for desktop</a>.</p> 
+        <textarea aria-live="polite" readonly></textarea> 
+        <small>Made by <a href="http://people.opera.com/danield/">Daniel Davis</a>. Feel free to copy &amp; improve.</small> 
+    </section> 
+    <section>
+		<canvas width="360" height="100" id="color-picker"></canvas>
+		<button id="swap">Swap Colors</button>
+		<button id="revert">Revert to Original Colors</button>
+	</section>
+</div> 
+</body> 
+</html>
